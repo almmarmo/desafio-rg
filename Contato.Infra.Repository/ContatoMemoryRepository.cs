@@ -43,7 +43,7 @@ namespace Contato.Infra.Repository
 
         public IEnumerable<Domain.Contato> List(int page, int size)
         {
-            throw new NotImplementedException();
+            return contatos.Skip((page - 1) * size).Take(size);
         }
 
         public void Update(Domain.Contato contato)
@@ -58,7 +58,12 @@ namespace Contato.Infra.Repository
 
         private void Seed()
         {
-            contatos.Add(new Domain.Contato("Contato 1", "Celular", "923458877", "Teste", "b5e790d0-954e-4408-b70f-74f8eeab0a04"));
+            contatos.Add(new Domain.Contato("Contato 1", "Celular", "923458877", "Teste", "b5e790d0-954e-4408-b70f-74f8eeab0a00"));
+            contatos.Add(new Domain.Contato("Contato 2", "Celular", "923458877", "Teste", "b5e790d0-954e-4408-b70f-74f8eeab0a01"));
+            contatos.Add(new Domain.Contato("Contato 3", "Celular", "923458877", "Teste", "b5e790d0-954e-4408-b70f-74f8eeab0a02"));
+            contatos.Add(new Domain.Contato("Contato 4", "Celular", "923458877", "Teste", "b5e790d0-954e-4408-b70f-74f8eeab0a03"));
+            contatos.Add(new Domain.Contato("Contato 5", "Celular", "923458877", "Teste", "b5e790d0-954e-4408-b70f-74f8eeab0a04"));
+            contatos.Add(new Domain.Contato("Contato 6", "Celular", "923458877", "Teste", "b5e790d0-954e-4408-b70f-74f8eeab0a05"));
         }
     }
 }

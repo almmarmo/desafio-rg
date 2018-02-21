@@ -5,8 +5,9 @@ using System.Text;
 
 namespace Contato.Application.Service.Messages
 {
-    [DataContract]
-    public class ContatoCreateRequest : ContatoMessage
+    public class ContatoResponse : ContatoMessage
     {
+        [DataMember(Name = "id")]
+        public string Id { get; set; }
     }
 }

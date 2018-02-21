@@ -37,20 +37,79 @@ namespace Contato.WebApi.Controllers
             try
             {
                 contatoApplicationService.Update(idContato, request);
+                return NoContent();
             }
             catch (Exception e)
             {
-                return StatusCode(500, e);
+                return BadRequest(e);
             }
             
-            return NoContent();
         }
 
         [HttpPost]
         [Route("")]
         public IActionResult Create([FromBody] ContatoCreateRequest request)
         {
-            return Created("", "");
+            string id = string.Empty;
+            List<KeyValuePair<string, string>> validations = new List<KeyValuePair<string, string>>();
+            try
+            {
+                if (String.IsNullOrEmpty(request.Canal))
+                    validations.Add(new KeyValuePair<string, string>("Canal", "Campo é obrigatório."));
+                if (String.IsNullOrEmpty(request.Nome))
+                    validations.Add(new KeyValuePair<string, string>("Nome", "Campo é obrigatório."));
+                if (String.IsNullOrEmpty(request.Valor))
+                    validations.Add(new KeyValuePair<string, string>("Valor", "Campo é obrigatório."));
+
+                if (validations.Count > 0)
+                    return BadRequest(validations.Select(v => new { atributo = v.Key, mensagem = v.Value }));
+
+                id = contatoApplicationService.Create(request);
+
+                return Created("", id);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+
+        }
+
+        [HttpDelete]
+        [Route("{idContato}")]
+        public IActionResult Delete(string idContato)
+        {
+            try
+            {
+                var response = contatoApplicationService.Get(idContato);
+                if (response == null)
+                    return NotFound("Contato não encontrado.");
+
+                contatoApplicationService.Delete(idContato);
+
+                return NoContent();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+
+        }
+
+        [HttpGet]
+        [Route("")]
+        public IActionResult List([FromQuery] int page, [FromQuery] int size)
+        {
+            try
+            {
+                var response = contatoApplicationService.List(page, size);
+
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
         }
     }
 }

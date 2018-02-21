@@ -15,6 +15,11 @@ namespace Contato.Infra.Service
             this.contatoRepository = contatoRepository;
         }
 
+        public void Create(Domain.Contato contato)
+        {
+            contatoRepository.Create(contato);
+        }
+
         public void Delete(Guid id)
         {
             contatoRepository.Delete(id);
@@ -27,7 +32,7 @@ namespace Contato.Infra.Service
 
         public IEnumerable<Contato.Domain.Contato> List(int page, int size)
         {
-            throw new NotImplementedException();
+            return contatoRepository.List(page, size);
         }
 
         public void Update(Contato.Domain.Contato contato)
