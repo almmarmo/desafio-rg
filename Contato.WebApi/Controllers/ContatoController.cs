@@ -51,16 +51,9 @@ namespace Contato.WebApi.Controllers
         public IActionResult Create([FromBody] ContatoCreateRequest request)
         {
             string id = string.Empty;
-            List<KeyValuePair<string, string>> validations = new List<KeyValuePair<string, string>>();
             try
             {
-                if (String.IsNullOrEmpty(request.Canal))
-                    validations.Add(new KeyValuePair<string, string>("Canal", "Campo é obrigatório."));
-                if (String.IsNullOrEmpty(request.Nome))
-                    validations.Add(new KeyValuePair<string, string>("Nome", "Campo é obrigatório."));
-                if (String.IsNullOrEmpty(request.Valor))
-                    validations.Add(new KeyValuePair<string, string>("Valor", "Campo é obrigatório."));
-
+                var validations = Validar(request);
                 if (validations.Count > 0)
                     return BadRequest(validations.Select(v => new { atributo = v.Key, mensagem = v.Value }));
 
@@ -110,6 +103,19 @@ namespace Contato.WebApi.Controllers
             {
                 return BadRequest(e);
             }
+        }
+
+        public List<KeyValuePair<string, string>> Validar(ContatoCreateRequest request)
+        {
+            List<KeyValuePair<string, string>> validations = new List<KeyValuePair<string, string>>();
+            if (String.IsNullOrEmpty(request.Canal))
+                validations.Add(new KeyValuePair<string, string>("Canal", "Campo é obrigatório."));
+            if (String.IsNullOrEmpty(request.Nome))
+                validations.Add(new KeyValuePair<string, string>("Nome", "Campo é obrigatório."));
+            if (String.IsNullOrEmpty(request.Valor))
+                validations.Add(new KeyValuePair<string, string>("Valor", "Campo é obrigatório."));
+
+            return validations;
         }
     }
 }

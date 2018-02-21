@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Contato.Application.Service.Messages
 {
+    [DataContract]
     public abstract class ContatoMessage
     {
         [DataMember(Name = "nome")]
