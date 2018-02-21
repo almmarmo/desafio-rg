@@ -1,6 +1,6 @@
-﻿using Contrato.Domain;
-using Contrato.Domain.Repository;
-using Contrato.Domain.Service;
+﻿using Contato.Domain;
+using Contato.Domain.Repository;
+using Contato.Domain.Service;
 using System;
 using System.Collections.Generic;
 
@@ -20,17 +20,17 @@ namespace Contato.Infra.Service
             contatoRepository.Delete(id);
         }
 
-        public Contrato.Domain.Contato Get(Guid id)
+        public Contato.Domain.Contato Get(Guid id)
         {
             return contatoRepository.Get(id);
         }
 
-        public IEnumerable<Contrato.Domain.Contato> List(int page, int size)
+        public IEnumerable<Contato.Domain.Contato> List(int page, int size)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(Contrato.Domain.Contato contato)
+        public void Update(Contato.Domain.Contato contato)
         {
             contatoRepository.Update(contato);
         }

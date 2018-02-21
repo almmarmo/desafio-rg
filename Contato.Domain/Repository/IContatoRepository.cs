@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Contrato.Domain.Repository
+namespace Contato.Domain.Repository
 {
     public interface IContatoRepository
     {

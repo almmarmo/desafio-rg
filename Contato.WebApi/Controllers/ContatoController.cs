@@ -34,6 +34,15 @@ namespace Contato.WebApi.Controllers
         [Route("{idContato}")]
         public IActionResult Update(string idContato, [FromBody] ContatoUpdateRequest request)
         {
+            try
+            {
+                contatoApplicationService.Update(idContato, request);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e);
+            }
+            
             return NoContent();
         }
 

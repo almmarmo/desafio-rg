@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Contrato.Domain
+namespace Contato.Domain
 {
     public enum Canal
     {

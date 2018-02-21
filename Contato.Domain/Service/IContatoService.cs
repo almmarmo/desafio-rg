@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Contrato.Domain.Service
+namespace Contato.Domain.Service
 {
     public interface IContatoService
     {

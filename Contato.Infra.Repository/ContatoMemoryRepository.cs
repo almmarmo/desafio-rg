@@ -1,21 +1,24 @@
-﻿using Contrato.Domain;
-using Contrato.Domain.Repository;
+﻿using Contato.Domain;
+using Contato.Domain.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Contrato.Infra.Repository
+namespace Contato.Infra.Repository
 {
     public class ContatoMemoryRepository : IContatoRepository
     {
-        private static List<Contato> contatos;
+        private static List<Domain.Contato> contatos;
         public ContatoMemoryRepository()
         {
-            contatos = new List<Contato>();
-            Seed();
+            if (contatos == null)
+            {
+                contatos = new List<Domain.Contato>();
+                Seed();
+            }
         }
 
-        public void Create(Contato contato)
+        public void Create(Domain.Contato contato)
         {
             if(contato != null)
                 contatos.Add(contato);
@@ -28,22 +31,22 @@ namespace Contrato.Infra.Repository
                 contatos.Remove(contato);
         }
 
-        protected void Delete(Contato contato)
+        protected void Delete(Domain.Contato contato)
         {
             Delete(contato.Id);
         }
 
-        public Contato Get(Guid id)
+        public Domain.Contato Get(Guid id)
         {
             return contatos.FirstOrDefault(c => c.Id == id);
         }
 
-        public IEnumerable<Contato> List(int page, int size)
+        public IEnumerable<Domain.Contato> List(int page, int size)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(Contato contato)
+        public void Update(Domain.Contato contato)
         {
             var contatoExistente = Get(contato.Id);
             if(contatoExistente != null)
@@ -55,7 +58,7 @@ namespace Contrato.Infra.Repository
 
         private void Seed()
         {
-            contatos.Add(new Contato("Contato 1", Canal.Celular, "923458877", "Teste", "b5e790d0-954e-4408-b70f-74f8eeab0a04"));
+            contatos.Add(new Domain.Contato("Contato 1", "Celular", "923458877", "Teste", "b5e790d0-954e-4408-b70f-74f8eeab0a04"));
         }
     }
 }

@@ -1,8 +1,8 @@
 ﻿using Contato.Application.Service;
 using Contato.Infra.Service;
-using Contrato.Domain.Repository;
-using Contrato.Domain.Service;
-using Contrato.Infra.Repository;
+using Contato.Domain.Repository;
+using Contato.Domain.Service;
+using Contato.Infra.Repository;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;

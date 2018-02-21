@@ -8,5 +8,6 @@ namespace Contato.Application.Service
     public interface IContatoApplicationService
     {
         ContatoGetResponseMessage Get(string id);
+        void Update(string id, ContatoUpdateRequest request);
     }
 }

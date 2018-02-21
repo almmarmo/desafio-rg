@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Net.Http;
 using Contato.Application.Service.Messages;
-using Contrato.Domain.Service;
+using Contato.Domain;
+using Contato.Domain.Service;
 using Newtonsoft.Json;
 
 namespace Contato.Application.Service
@@ -31,6 +32,12 @@ namespace Contato.Application.Service
             }
 
             return response;
+        }
+
+        public void Update(string id, ContatoUpdateRequest request)
+        {
+            Domain.Contato entity = new Domain.Contato(request.Nome, request.Canal, request.Valor, request.Observacao, id);
+            contatoService.Update(entity);
         }
     }
 }

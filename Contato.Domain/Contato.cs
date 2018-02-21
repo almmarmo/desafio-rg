@@ -1,13 +1,13 @@
 ﻿using System;
 
-namespace Contrato.Domain
+namespace Contato.Domain
 {
     public class Contato
     {
-        public Contato(string nome, Canal canal, string valor, string observacao, string id = null)
+        public Contato(string nome, string canal, string valor, string observacao, string id = null)
         {
             Nome = nome;
-            Canal = canal;
+            Canal = ConvertCanal(canal);
             Valor = valor;
             Observacao = observacao;
             if (String.IsNullOrEmpty(id))
@@ -21,6 +21,17 @@ namespace Contrato.Domain
         public string Valor { get; set; }
         public string Observacao { get; set; }
 
-
+        private Canal ConvertCanal(string canalDescription)
+        {
+            switch(canalDescription)
+            {
+                case "Email":
+                    return Canal.Email;
+                case "Fixo":
+                    return Canal.Fixo;
+                default:
+                    return Canal.Celular;
+            }
+        }
     }
 }
